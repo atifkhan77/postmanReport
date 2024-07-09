@@ -1,0 +1,16 @@
+Name : "Newman Tests"
+on : [push, pull-request]
+
+jobs:
+  build:
+    runs-on: ubunto-latest
+    container:
+      image: postman/newman
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Run API Tests
+        run: newman run "RestfulBookerBVT postman_collection.json" -e Production.postman_enviornment.json
+        
+      
